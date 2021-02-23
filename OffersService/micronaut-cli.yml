@@ -1,5 +1,5 @@
 profile: service
-defaultPackage: io.hashimati.offersservice
+defaultPackage: io.hashimati.offerservice
 ---
 testFramework: junit
 sourceLanguage: java

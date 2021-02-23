@@ -1,38 +1,41 @@
 micronaut:
   application:
-    name: OffersService
+    name: OffersServices
   server:
     port: -1
-
-
-
 ---
-
 micronaut:
   security:
     enabled: true
-    endpoints:
-      login:
-        enabled: true
-      oauth:
-        enabled: true
     token:
       jwt:
         enabled: true
         signatures:
           secret:
-            generator:
-              secret: "${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"
-
+            validation:
+              secret: pleaseChangeThisSecretForANewOne
+      # writer:
+      #   header:
+      #     enabled: true
+      # propagation:
+      #   enabled: true
+      #   service-id-regex: "requests-services"
+            
 ---
 
 mongodb:
-  uri: "mongodb://${MONGO_HOST:localhost}:${MONGO_PORT:27017}"
+  uri: "mongodb://${MONGO_HOST:localhost}:${MONGO_PORT:27017}"  
 
+# ---
+# eureka:
+#   client:
+#     registration:
+
+#       enabled: true
+#     defaultZone: "${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}"
 ---
-
-eureka:
+consul:
   client:
     registration:
       enabled: true
-    defaultZone: "${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}"
+    defaultZone: "${CONSUL_HOST:localhost}:${CONSUL_PORT:8500}"
